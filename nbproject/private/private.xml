@@ -2,6 +2,20 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/app.blade.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/routes/api.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/sidebar.blade.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/.env</file>
+            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/CompanyInfoController.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/User.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/header.blade.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/routes/web.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/login.blade.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/dashboard.blade.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/app/CompanyInfo.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/app/ModelUser.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/company_info.blade.php</file>
+        </group>
     </open-files>
 </project-private>
