@@ -6,7 +6,7 @@
     $(document).ready(function () {
         $("#btnSubmit").click(function (event) {
             event.preventDefault();
-            var form = $('#frmGroup')[0];
+            var form = $('#frmCompany')[0];
             var data = new FormData(form);
             data.append("CustomField", "This is some extra data, testing");
             $("#btnSubmit").prop("disabled", true);
@@ -47,7 +47,7 @@
 </section>
 
 <section class="content">
-    <form id="frmGroup" name="frmGroup" method="post" action="{{url('/api/master/company/store')}}">
+    <form id="frmCompany" name="frmCompany" method="post" action="{{url('/api/master/company/store')}}">
     @foreach($data_company as $company)
     {{ csrf_field() }}
     <div class="row">

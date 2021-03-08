@@ -4,7 +4,7 @@
     $(document).ready(function () {
         $("#btnSubmit").click(function (event) {
             event.preventDefault();
-            var form = $('#frmGroup')[0];
+            var form = $('#frmCompany')[0];
             var data = new FormData(form);
             data.append("CustomField", "This is some extra data, testing");
             $("#btnSubmit").prop("disabled", true);
@@ -45,7 +45,7 @@
 </section>
 
 <section class="content">
-    <form id="frmGroup" name="frmGroup" method="post" action="<?php echo e(url('/api/master/company/store')); ?>">
+    <form id="frmCompany" name="frmCompany" method="post" action="<?php echo e(url('/api/master/company/store')); ?>">
     <?php $__currentLoopData = $data_company; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <?php echo e(csrf_field()); ?>
 

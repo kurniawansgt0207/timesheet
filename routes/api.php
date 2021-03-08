@@ -31,6 +31,8 @@ Route::post('/ldap_get_2','User@get_ldap');
 Route::post('/auto_closed_ticket','TicketingController@autoClosedTicket');
 
 Route::post('/master/company/store','CompanyInfoController@store_data');
+Route::post('/master/client/store','ClientInfoController@storeData');
+Route::get('/master/client/delete/{id}','ClientInfoController@delete_data');
 
 Route::post('/modul/store','MasterModulController@store_data');
 Route::get('/modul/{id}','MasterModulController@delete_data');

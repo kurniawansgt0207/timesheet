@@ -26,6 +26,10 @@ Route::get('/dashboard/graph_3/{param}','User@showGraph_3');
 
 Route::get('/master/company','CompanyInfoController@index');
 
+Route::get('/master/client','ClientInfoController@showDataAll');
+Route::get('/master/client/add_data','ClientInfoController@addData');
+Route::get('/master/client/edit_data/{id}','ClientInfoController@editData');
+
 Route::get('/master/modul','MasterModulController@showAll');
 Route::get('/master/modul/add_data','MasterModulController@add_data');
 Route::get('/master/modul/edit_data/{id}','MasterModulController@edit_data');
