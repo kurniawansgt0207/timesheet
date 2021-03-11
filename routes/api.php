@@ -58,3 +58,12 @@ Route::get('/master/role/delete/{id}','RoleInfoController@delete_data');
 
 Route::post('/master/employee/store','EmployeeInfoController@storeData');
 Route::get('/master/employee/delete/{id}','EmployeeInfoController@delete_data');
+
+Route::post('/master/cost/store','CostInfoController@storeData');
+Route::get('/master/cost/delete/{id}','CostInfoController@delete_data');
+
+Route::post('/master/areacost/store','AreaCostInfoController@storeData');
+Route::get('/master/areacost/delete/{id}','AreaCostInfoController@delete_data');
+
+Route::post('/master/set_document/store','SettingDocumentInfoController@storeData');
+Route::get('/master/set_document/delete/{id}','SettingDocumentInfoController@delete_data');

@@ -61,3 +61,15 @@ Route::get('/master/role/edit_data/{id}','RoleInfoController@editData');
 Route::get('/master/employee','EmployeeInfoController@index');
 Route::get('/master/employee/add_data','EmployeeInfoController@addData');
 Route::get('/master/employee/edit_data/{id}','EmployeeInfoController@editData');
+
+Route::get('/master/cost','CostInfoController@index');
+Route::get('/master/cost/add_data','CostInfoController@addData');
+Route::get('/master/cost/edit_data/{id}','CostInfoController@editData');
+
+Route::get('/master/areacost','AreaCostInfoController@index');
+Route::get('/master/areacost/add_data','AreaCostInfoController@addData');
+Route::get('/master/areacost/edit_data/{id}','AreaCostInfoController@editData');
+
+Route::get('/master/set_document','SettingDocumentInfoController@index');
+Route::get('/master/set_document/add_data','SettingDocumentInfoController@addData');
+Route::get('/master/set_document/edit_data/{id}','SettingDocumentInfoController@editData');

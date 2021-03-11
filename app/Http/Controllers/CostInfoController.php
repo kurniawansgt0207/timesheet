@@ -7,34 +7,34 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
-use App\AreaInfo;
+use App\CostInfo;
 
-class AreaInfoController extends Controller
+class CostInfoController extends Controller
 {
     //
     public function index() {
         $listData = $this->showDataAll();
-        return view('/layouts/master/area_info_list', ['area_info' => $listData]);
+        return view('/layouts/master/cost_info_list', ['cost_info' => $listData]);
     }
     
     public function showDataAll() {
-        $listData = DB::select("SELECT * FROM m_area ORDER BY id");
+        $listData = DB::select("SELECT * FROM m_cost ORDER BY id");
         return $listData;
     }
     
     public function showData($id){
-        $listData = DB::select("SELECT * FROM m_area WHERE id=".$id);
+        $listData = DB::select("SELECT * FROM m_cost WHERE id=".$id);
         return $listData;
     }
     
     public function addData(){        
         $area = array(0);        
-        return view('/layouts/master/area_info',['area_info' => $area]);
+        return view('/layouts/master/cost_info',['cost_info' => $area]);
     }
     
     public function editData($id){
         $area = $this->showData($id);
-        return view('/layouts/master/area_info',['area_info' => $area]);
+        return view('/layouts/master/cost_info',['cost_info' => $area]);
     }
     
     public function storeData(Request $request)
@@ -54,10 +54,11 @@ class AreaInfoController extends Controller
 
     public function save_data(Request $request)
     {
-        $m_pekerja = new AreaInfo();
-        $m_pekerja->area = $request->area;
-        $m_pekerja->audituser = $_SESSION['name'];
-        $m_pekerja->save();
+        $m_cost = new CostInfo();
+        $m_cost->costname = $request->costname;
+        $m_cost->visOrder = $request->visorder;
+        $m_cost->audituser = $_SESSION['name'];
+        $m_cost->save();
 
         $id = DB::getPdo()->lastInsertId();
                 
@@ -66,17 +67,18 @@ class AreaInfoController extends Controller
     
     public function update_data(Request $request, $id)
     {
-        $m_pekerja = AreaInfo::where('id', $id)->first();
-        $m_pekerja->area = $request->area;
-        $m_pekerja->audituser = $_SESSION['name'];
-        $m_pekerja->save();       
+        $m_cost = CostInfo::where('id', $id)->first();
+        $m_cost->costname = $request->costname;
+        $m_cost->visOrder = $request->visorder;
+        $m_cost->audituser = $_SESSION['name'];
+        $m_cost->save();       
 
         echo "Data Berhasil Terupdate";
     }
     
     public function delete_data($id)
     {
-        DB::table('m_area')->where('id',$id)->delete();
-        return redirect('/master/area');
+        DB::table('m_cost')->where('id',$id)->delete();
+        return redirect('/master/cost');
     }
 }
