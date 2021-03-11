@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-session_start();
+//session_start();
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

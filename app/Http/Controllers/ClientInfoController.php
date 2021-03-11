@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-session_start();
+//session_start();
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -17,12 +17,13 @@ class ClientInfoController extends Controller
 {
     //
     public function index(){
-        
+        $listData = $this->showDataAll();
+        return view('/layouts/master/client_info_list', ['client_info' => $listData]);
     }
     
     public function showDataAll(){
         $listData = DB::select('CALL `sp_m_client_listmenu`(?,?,?)',array(1,'',''));
-        return view('/layouts/master/client_info_list', ['client_info' => $listData]);
+        return $listData;
     }
     
     public function showData($id){

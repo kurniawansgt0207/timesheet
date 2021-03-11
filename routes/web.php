@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,56 +26,38 @@ Route::get('/dashboard/graph_3/{param}','User@showGraph_3');
 
 Route::get('/master/company','CompanyInfoController@index');
 
-Route::get('/master/client','ClientInfoController@showDataAll');
+Route::get('/master/user','User@listData');
+Route::get('/master/user/add_data','User@addData');
+Route::get('/master/user/edit_data/{id}','User@editData');
+
+Route::get('/master/client','ClientInfoController@index');
 Route::get('/master/client/add_data','ClientInfoController@addData');
 Route::get('/master/client/edit_data/{id}','ClientInfoController@editData');
 
-Route::get('/master/modul','MasterModulController@showAll');
-Route::get('/master/modul/add_data','MasterModulController@add_data');
-Route::get('/master/modul/edit_data/{id}','MasterModulController@edit_data');
+Route::get('/master/group','GroupInfoController@index');
+Route::get('/master/group/add_data','GroupInfoController@addData');
+Route::get('/master/group/edit_data/{id}','GroupInfoController@editData');
 
-Route::get('/master/group/add_data','RoleGroupController@add_data');
+Route::get('/master/area','AreaInfoController@index');
+Route::get('/master/area/add_data','AreaInfoController@addData');
+Route::get('/master/area/edit_data/{id}','AreaInfoController@editData');
 
-Route::get('/master/group_access','RoleGroupDetailController@showAll');
-Route::get('/master/group_access/edit_data/{id}','RoleGroupDetailController@edit_data');
+Route::get('/master/jabatan','JabatanInfoController@index');
+Route::get('/master/jabatan/add_data','JabatanInfoController@addData');
+Route::get('/master/jabatan/edit_data/{id}','JabatanInfoController@editData');
 
-Route::get('/master/kategori_layanan','KategoriLayananController@index');
-Route::get('/master/kategori_layanan/add_data','KategoriLayananController@add_data');
-Route::get('/master/kategori_layanan/edit_data/{id}','KategoriLayananController@edit_data');
+Route::get('/master/departemen','DepartemenInfoController@index');
+Route::get('/master/departemen/add_data','DepartemenInfoController@addData');
+Route::get('/master/departemen/edit_data/{id}','DepartemenInfoController@editData');
 
-Route::get('/master/data_pekerja','DataPekerjaController@index');
-Route::get('/master/data_pekerja/add_data','DataPekerjaController@add_data');
-Route::get('/master/data_pekerja/list/{keyword}','DataPekerjaController@list_data');
-Route::get('/master/data_pekerja/edit_data/{id}','DataPekerjaController@edit_data');
-Route::get('/master/data_pekerja/profil/{nopek}','DataPekerjaController@profil');
-Route::get('/master/data_pekerja/cek_pass/{nopek}/{pass}','DataPekerjaController@cek_password');
+Route::get('/master/level','LevelInfoController@index');
+Route::get('/master/level/add_data','LevelInfoController@addData');
+Route::get('/master/level/edit_data/{id}','LevelInfoController@editData');
 
-Route::get('/master/mitra_kerja','MitraKerjaController@index');
-Route::get('/master/mitra_kerja/add_data','MitraKerjaController@add_data');
-Route::get('/master/mitra_kerja/list/{keyword}','MitraKerjaController@list_data');
-Route::get('/master/mitra_kerja/edit_data/{id}','MitraKerjaController@edit_data');
+Route::get('/master/role','RoleInfoController@index');
+Route::get('/master/role/add_data','RoleInfoController@addData');
+Route::get('/master/role/edit_data/{id}','RoleInfoController@editData');
 
-Route::get('/master/email_status/{param}','MailTicketingController@list_data');
-
-Route::get('/ticketing/request','TicketingRequestController@index');
-Route::get('/ticketing/request/add_data','TicketingRequestController@add_data');
-Route::get('/ticketing/request/edit_data/{id}','TicketingRequestController@edit_data');
-Route::get('/ticketing/request/view_data/{id}','TicketingRequestController@view_data');
-
-Route::get('/ticketing/assign','TicketingAssignController@index');
-Route::get('/ticketing/assign/{id}','TicketingAssignController@assign_data');
-Route::get('/ticketing/assign/download/{file}','TicketingAssignController@downloadFile');
-
-Route::get('/ticketing/approval','TicketingApprovalController@index');
-Route::get('/ticketing/approval/{id}','TicketingApprovalController@approval_data');
-
-Route::get('/ticketing/all_activity','TicketingController@index');
-Route::get('/ticketing/all_activity/{id}','TicketingController@activity_data');
-
-Route::get('/reporting/claim_per_day/{param}','ReportingController@claim_per_day');
-Route::get('/reporting/per_category/{param}','ReportingController@per_category');
-
-Route::get('/kirimemail/{email}','NotifikasiEmailController@index');
-Route::get('/sendmail/{id}','NotifikasiEmailController@sendEmail');
-
-Route::get('coba', 'NotifikasiEmailController@kirim_email');
+Route::get('/master/employee','EmployeeInfoController@index');
+Route::get('/master/employee/add_data','EmployeeInfoController@addData');
+Route::get('/master/employee/edit_data/{id}','EmployeeInfoController@editData');

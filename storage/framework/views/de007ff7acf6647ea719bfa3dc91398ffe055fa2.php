@@ -47,8 +47,18 @@
                         $roleAccess = RoleGroupDetailController::get_access_crud($subMenu->modul_alias);*/
           ?>
           <!--<li><a href="<?php //echo url('/').$subMenu->route_link;?>"><i class="fa fa-circle-o"></i><?php //echo $subMenu->modul_alias;?></a></li>-->
+          <li><a href="<?php echo e(url('/').'/master/user'); ?>"><i class="fa fa-user-circle"></i>User Info</a></li>
+          <li><a href="<?php echo e(url('/').'/master/role'); ?>"><i class="fa fa-rouble"></i>User Role</a></li>
           <li><a href="<?php echo e(url('/').'/master/company'); ?>"><i class="fa fa-building"></i>Company Info</a></li>
+          <li><a href="<?php echo e(url('/').'/master/group'); ?>"><i class="fa fa-gg-circle"></i>Group Info</a></li>
+          <li><a href="<?php echo e(url('/').'/master/area'); ?>"><i class="fa fa-bitbucket-square"></i>Area Info</a></li>
           <li><a href="<?php echo e(url('/').'/master/client'); ?>"><i class="fa fa-chain"></i>Client Info</a></li>
+          <li><a href="<?php echo e(url('/').'/master/employee'); ?>"><i class="fa fa-user-secret"></i>Employee Info</a></li>
+          <li><a href="<?php echo e(url('/').'/master/jabatan'); ?>"><i class="fa fa-bookmark"></i>Jabatan Info</a></li>
+          <li><a href="<?php echo e(url('/').'/master/departemen'); ?>"><i class="fa fa-briefcase"></i>Departemen Info</a></li>
+          <li><a href="<?php echo e(url('/').'/master/level'); ?>"><i class="fa fa-level-down"></i>Level Info</a></li>
+          <li><a href="<?php echo e(url('/').'/master/cost'); ?>"><i class="fa fa-dollar"></i>Cost Info</a></li>
+          <li><a href="<?php echo e(url('/').'/master/set_document'); ?>"><i class="fa fa-gears"></i>Pengaturan Dokumen</a></li>
           <?php
                     /*}
                 }*/

@@ -3,21 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/GroupInfoController.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/routes/api.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/sidebar.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/.env</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/CompanyInfoController.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/ClientInfoController.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/client_info.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/User.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/header.blade.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/LevelInfoController.php</file>
             <file>file:/E:/xampp/htdocs/timesheet/routes/web.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/login.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/dashboard.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/client_info_list.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/AreaInfoController.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/company_info.blade.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/jabatan_info.blade.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/JabatanInfoController.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/jabatan_info_list.blade.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/app/LevelInfo.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/app/DepartemenInfo.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/app/JabatanInfo.php</file>
         </group>
     </open-files>
 </project-private>

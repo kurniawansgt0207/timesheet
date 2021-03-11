@@ -42,7 +42,7 @@
     <ol class="breadcrumb">
         <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Master</li>        
-        <li class="active">Company Information</li>
+        <li>Company Info</li>
     </ol>
 </section>
 

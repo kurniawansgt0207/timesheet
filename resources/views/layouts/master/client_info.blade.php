@@ -39,7 +39,7 @@
     <ol class="breadcrumb">
         <li><a href="/home"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Master</li>
-        <li class="active">Client Info</li>
+        <li><a href="{{url('/')}}/master/client">Client Info</a></li>
         <li class="active">Input Data</li>
     </ol>
 </section>

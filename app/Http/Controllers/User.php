@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-session_start();
+//session_start();
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -17,6 +17,82 @@ class User extends Controller
         return view('/layouts/dashboard');
     }
     
+    public function listData(){
+        $listData = $this->showDataAll();
+        return view('/layouts/master/user_info_list', ['user_info' => $listData]);
+    }
+    
+    public function showDataAll() {
+        $listData = DB::select("SELECT * FROM m_user ORDER BY id");
+        return $listData;
+    }
+    
+    public function showData($id){
+        $listData = DB::select("SELECT * FROM m_user WHERE id=".$id);
+        return $listData;
+    }
+    
+    public function addData(){        
+        $user = array(0);        
+        return view('/layouts/master/user_info',['user_info' => $user]);
+    }
+    
+    public function editData($id){
+        $user = $this->showData($id);
+        return view('/layouts/master/user_info',['user_info' => $user]);
+    }
+    
+    public function storeData(Request $request)
+    {
+        $session = isset($request->sessionVal)?$request->sessionVal:0;
+        $id = isset($request->id)?$request->id:0;
+        if($session==0){
+            return redirect('login')->with('alert','Silahkan Login ...!!!');
+        } else {
+            if ($id == 0) {
+                $this->save_data($request);
+            } else {
+                $this->update_data($request, $id);
+            }
+        }
+    }
+
+    public function save_data(Request $request)
+    {
+        $m_pekerja = new ModelUser();
+        $m_pekerja->name = $request->name;
+        $m_pekerja->email = $request->email;
+        $m_pekerja->password = Hash::make($request->password);
+        $m_pekerja->password_ori = $request->password;
+        $m_pekerja->img_profile = "profile-icon.png";
+        $m_pekerja->stat_active = $request->stat_active;
+        $m_pekerja->save();
+
+        $id = DB::getPdo()->lastInsertId();
+                
+        echo "Data Berhasil Tersimpan";
+    }
+    
+    public function update_data(Request $request, $id)
+    {
+        $m_pekerja = ModelUser::where('id', $id)->first();
+        $m_pekerja->name = $request->name;
+        $m_pekerja->email = $request->email;
+        $m_pekerja->password = Hash::make($request->password);
+        $m_pekerja->password_ori = $request->password;
+        $m_pekerja->img_profile = "profile-icon.png";
+        $m_pekerja->stat_active = $request->stat_active;
+        $m_pekerja->save();       
+
+        echo "Data Berhasil Terupdate";
+    }
+    
+    public function delete_data($id)
+    {
+        DB::table('m_user')->where('id',$id)->delete();
+        return redirect('/master/user');
+    }
+
     public function login_admin(){
         return view('/layouts/login_admin');
     }

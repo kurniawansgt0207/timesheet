@@ -40,7 +40,7 @@
     <ol class="breadcrumb">
         <li><a href="<?php echo e(url('/home')); ?>"><i class="fa fa-dashboard"></i> Home</a></li>
         <li>Master</li>        
-        <li class="active">Company Information</li>
+        <li><a href="<?php echo e(url('/')); ?>/master/company">Company Info</a></li>
     </ol>
 </section>
 
