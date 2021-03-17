@@ -31,6 +31,15 @@ class ClientInfoController extends Controller
         return $listData;
     }
     
+    public function findDataByIdDetail($id){
+        $rs = $this->showData($id);        
+        echo "<b>Alamat</b><br>".$rs[0]->alamat."<br>";
+        echo "<b>Kota</b><br>".$rs[0]->kota."<br>";
+        echo "<b>Kantor</b><br>"; echo ($rs[0]->isHolding==1) ? "Pusat"."<br>" : "Cabang"."<br>";
+        echo "<b>Group</b><br>".$rs[0]->groupcode."<br>";
+        echo "<b>Area</b><br>".$rs[0]->area;
+    }
+    
     public function addData(){
         $city = new CityInfoController();
         $group = new GroupInfoController();

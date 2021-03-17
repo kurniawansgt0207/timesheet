@@ -3,30 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/JabatanInfoController.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/jabatan_info.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/DepartemenInfoController.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/routes/web.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/area_info.blade.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/transaksi/jobs/jobs_list.blade.php</file>
             <file>file:/E:/xampp/htdocs/timesheet/routes/api.php</file>
             <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/sidebar.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/role_info.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/DepartemenInfo.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/User.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/JobsController.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/transaksi/jobs/job.blade.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/app/JobsInfo.php</file>
             <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/employee_info.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/JabatanInfo.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/employee_info_list.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/EmployeeInfoController.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/role_info_list.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/level_info_list.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/LevelInfoController.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/routes/web.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/EmployeeInfo.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/RoleInfoController.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/jabatan_info_list.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/departemen_info.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/departemen_info_list.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/LevelInfo.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/RoleInfo.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/level_info.blade.php</file>
         </group>
     </open-files>
 </project-private>

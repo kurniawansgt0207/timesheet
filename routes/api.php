@@ -67,3 +67,6 @@ Route::get('/master/areacost/delete/{id}','AreaCostInfoController@delete_data');
 
 Route::post('/master/set_document/store','SettingDocumentInfoController@storeData');
 Route::get('/master/set_document/delete/{id}','SettingDocumentInfoController@delete_data');
+
+Route::post('/transaksi/jobs/job/store','JobsController@storeData');
+Route::get('/transaksi/jobs/job/delete/{id}/{user}','JobsController@delete_data');

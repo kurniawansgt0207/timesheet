@@ -33,6 +33,7 @@ Route::get('/master/user/edit_data/{id}','User@editData');
 Route::get('/master/client','ClientInfoController@index');
 Route::get('/master/client/add_data','ClientInfoController@addData');
 Route::get('/master/client/edit_data/{id}','ClientInfoController@editData');
+Route::get('/master/client/find_data_detail/{id}','ClientInfoController@findDataByIdDetail');
 
 Route::get('/master/group','GroupInfoController@index');
 Route::get('/master/group/add_data','GroupInfoController@addData');
@@ -73,3 +74,8 @@ Route::get('/master/areacost/edit_data/{id}','AreaCostInfoController@editData');
 Route::get('/master/set_document','SettingDocumentInfoController@index');
 Route::get('/master/set_document/add_data','SettingDocumentInfoController@addData');
 Route::get('/master/set_document/edit_data/{id}','SettingDocumentInfoController@editData');
+
+Route::get('/transaksi/jobs/job','JobsController@index');
+Route::get('/transaksi/jobs/job/{param1}/{param2}/{param3}','JobsController@index');
+Route::get('/transaksi/jobs/add_data','JobsController@addData');
+Route::get('/transaksi/jobs/edit_data/{id}/{sts}','JobsController@editData');
