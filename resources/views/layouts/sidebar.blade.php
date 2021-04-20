@@ -74,6 +74,9 @@
             </a>
             <ul class="treeview-menu">
                 <li><a href="{{ url('/').'/transaksi/jobs/job/0/0/0' }}"><i class="fa fa-calendar"></i>Job</a></li>
+                <li><a href="{{ url('/').'/transaksi/jobs/approval/list/0/0/0' }}"><i class="fa fa-check"></i>Approval Job</a></li>
+                <li><a href="{{ url('/').'/transaksi/tickets/ticket/0/0/0' }}"><i class="fa fa-ticket"></i>Ticket</a></li>
+                <li><a href="{{ url('/').'/transaksi/tickets/approval/list/0/0/0' }}"><i class="fa fa-refresh"></i>Approval Ticket</a></li>
             </ul>
         </li>
     <?php

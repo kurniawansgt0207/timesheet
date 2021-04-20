@@ -3,15 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/xampp/htdocs/timesheet/routes/web.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/area_info.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/transaksi/jobs/jobs_list.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/routes/api.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/sidebar.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/Http/Controllers/JobsController.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/transaksi/jobs/job.blade.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/app/JobsInfo.php</file>
-            <file>file:/E:/xampp/htdocs/timesheet/resources/views/layouts/master/employee_info.blade.php</file>
+            <file>file:/E:/xampp/htdocs/timesheet/.env</file>
         </group>
     </open-files>
 </project-private>

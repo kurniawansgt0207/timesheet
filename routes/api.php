@@ -70,3 +70,12 @@ Route::get('/master/set_document/delete/{id}','SettingDocumentInfoController@del
 
 Route::post('/transaksi/jobs/job/store','JobsController@storeData');
 Route::get('/transaksi/jobs/job/delete/{id}/{user}','JobsController@delete_data');
+
+Route::post('/transaksi/jobs/approval/store','ApprovalJobsController@storeData');
+Route::get('/transaksi/jobs/approval/delete/{id}/{user}','ApprovalJobsController@delete_data');
+
+Route::post('/transaksi/tickets/ticket/store','TicketController@storeData');
+Route::get('/transaksi/tickets/ticket/delete/{id}/{user}','TicketController@delete_data');
+
+Route::post('/transaksi/tickets/approval/store','ApprovalTicketsController@storeData');
+Route::get('/transaksi/tickets/approval/delete/{id}/{user}','ApprovalTicketsController@delete_data');

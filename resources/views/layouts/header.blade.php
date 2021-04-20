@@ -44,7 +44,7 @@
                 $userRole = str_replace("_"," ",str_replace(","," & ",str_replace("'","",$userRole)));
             ?>
             <p style="color: #000000">
-              {{isset($_SESSION['name'])?$_SESSION['name']:""}}<br>{{$userRole}}
+              {{isset($_SESSION['name'])?$_SESSION['name']:""}}<br>{{$userRole}} {{ $_SESSION['id'] }}
             </p>
           </li>
 

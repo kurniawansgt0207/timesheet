@@ -7,24 +7,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
-use App\ClientInfo;
-use App\JobsInfo;
-
-class JobsController extends Controller
+class ApprovalTicketsController extends Controller
 {
     //
     public function index($param1,$param2,$param3) {
         $statusDoc = $param1;
         $searchBy = $param2;
-        $email = $param3;
+        $email = ($param3 == 0) ? $_SESSION['email'] : $param3;
         
         $listData = $this->showDataAllJoin($statusDoc,$searchBy,$email);
-        return view('/layouts/transaksi/jobs/jobs_list', ['job_info' => $listData, 'status_doc' => $statusDoc]);
+        return view('/layouts/transaksi/tickets/approval_tickets_list', ['approval_ticket_info' => $listData, 'status_doc' => $statusDoc]);
     }
     
-    public function showDataAllJoin($status,$searchby,$email) {
-        $email = $_SESSION['email'];
-        $listData = DB::select("CALL `sp_t_job_listmenu_admin`('".$status."','".$searchby."','".$email."')");
+    public function showDataAllJoin($status,$searchby,$email) {        
+        $listData = DB::select("CALL `sp_t_ticket_listmenu_approve`($status,'$searchby','$email')");
         return $listData;
     }
     
@@ -34,17 +30,17 @@ class JobsController extends Controller
     }
     
     public function showData($id){
-        $listData = DB::select("CALL `sp_t_job_get`(?)",array($id));
+        $listData = DB::select("CALL `sp_t_ticket_get`(?)",array($id));
         return $listData;
     }
     
-    public function showJobAreaCost($id){
-        $listData = DB::select("CALL `sp_t_job_area_cost_get`(?)",array($id));
+    public  function showJobDepartemen($jobid,$deptid){
+        $listData = DB::select("CALL `sp_t_ticket_dept_get`(?,?)",array($jobid,$deptid));
         return $listData;
     }
     
-    public  function showJobDepartemen($id){
-        $listData = DB::select("CALL `sp_t_job_departemen_get`(?)",array($id));
+    public function showApprove($id,$userid){
+        $listData = DB::select("CALL `sp_t_job_departemen_approval_get`(?,?)",array($id,$userid));
         return $listData;
     }
 
@@ -56,22 +52,25 @@ class JobsController extends Controller
         
         Session::put('status_edit', 1);
         
-        return view('/layouts/transaksi/jobs/job',['job_info' => $group, 'client_list' => $clientInfo]);
+        return view('/layouts/transaksi/tickets/job',['job_info' => $group, 'client_list' => $clientInfo]);
     }
     
-    public function editData($id,$sts){
+    public function editData($id,$userid,$sts){
         $client = new ClientInfoController();
         
-        $group = $this->showData($id);
-        $areaCost = $this->showJobAreaCost($id);
-        $jobDept = $this->showJobDepartemen($id);
+        $tickets = $this->showData($id);
+        $jobId = $tickets[0]->jobId;
+        $deptId = $tickets[0]->departemenId;
+        $jobDept = $this->showJobDepartemen($jobId,$deptId);
         $clientInfo = $client->showDataAll();
-        
-        Session::put('status_edit', $sts);
-        Session::put('area_cost_info',$areaCost);
-        Session::put('dept_info',$jobDept);
-        
-        return view('/layouts/transaksi/jobs/job',['job_info' => $group, 'client_list' => $clientInfo]);
+        $approveInfo = $this->showApprove($id, $userid);
+                
+        return view('/layouts/transaksi/tickets/approval_tickets',
+                [
+                    'approval_ticket_info' => $tickets, 'client_list' => $clientInfo, 
+                    'status_edit' => $sts,'dept_info' => $jobDept,'approve_info' => $approveInfo
+                ]
+        );
     }
     
     public function storeData(Request $request)
@@ -94,7 +93,7 @@ class JobsController extends Controller
         $userAuditId = $_SESSION['id'];
         $tgl_job = explode(" - ",$request->tgljob);
         $tglmulai = date("Y-m-d",strtotime($tgl_job[0]));
-        $tglselesai = date("Y-m-d",strtotime($tgl_job[1]));           
+        $tglselesai = date("Y-m-d",strtotime($tgl_job[1]));        
         
         $listData = DB::select("CALL `sp_t_job_insert`(?,?,?,?,?,?,?,?)",array($request->id,$request->client,"",$request->fee,"$tglmulai","$tglselesai",0,$userAuditId));
         
@@ -111,29 +110,27 @@ class JobsController extends Controller
         $tgl_job = explode(" - ",$request->tgljob);
         $tglmulai = date("Y-m-d",strtotime($tgl_job[0]));
         $tglselesai = date("Y-m-d",strtotime($tgl_job[1]));
+        $status_job = ($request->stsdocjob=="Complete") ? 1 : 0;
         
-        $updateJob = DB::select("CALL `sp_t_job_update`(?,?,?,?,?,?,?,?)", array($request->id,$request->client,"$job_no",$request->fee,"$tglmulai","$tglselesai",$request->stsdoc,$userAuditId));
-        
-        $jmlDataAreaCost = count($request->idareacost);
-        $idAreaCostJob = $request->idareacost;
-        $AreaCostJodAmt = $request->areacostamt;
-        for($a=0;$a<$jmlDataAreaCost;$a++){            
-            $updateAreaCost = DB::select("CALL sp_t_job_area_cost_update(?,?,?)", array($idAreaCostJob[$a],$AreaCostJodAmt[$a],$userAuditId));
-        }
-        
+        $updateJob = DB::select("CALL `sp_t_ticket_dept_update`(?,?,?)", array($request->id,$status_job,$userAuditId));
+                
         $jmlDeptJob = count($request->iddeptjob);
         $idDeptJob = $request->iddeptjob;
+        $idTicket = $request->ticketid;
         $deptJobActive = $request->deptjobactive;
         
-        for($b=0;$b<count($request->iddeptjob);$b++){            
-            $updateDeptJob = DB::select("CALL sp_t_job_departemen_update(?,?,?)", array($idDeptJob[$b],isset($deptJobActive[$b])?1:0,$userAuditId));
+        for($b=0;$b<count($request->ticketid);$b++){            
+            $updateDeptJob = DB::select("CALL sp_t_ticket_update(?,?,?)", array($idTicket[$b],isset($deptJobActive[$b])?1:0,$userAuditId));
         }
-        echo $request->id."~Data Berhasil Terupdate";
+        
+        $updateApproval = DB::select("CALL sp_t_job_departemen_approval_update(?,?,?,?,?)", array($request->idApproval,date("Y-m-d",strtotime($request->tgl_approval)),$request->ket_approval,$request->sts_approval,$userAuditId));
+        
+        echo $request->id."~".$userAuditId."~"."Data Berhasil Terupdate";
     }
     
     public function delete_data($id,$user)
     {
         DB::select("CALL sp_t_job_delete(?,?)", array($id,$user));
-        return redirect('/transaksi/jobs/job/0/0/0');
+        return redirect('/transaksi/tickets/job/0/0/0');
     }
 }

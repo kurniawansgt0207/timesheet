@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use App\ModelUser;
 use App\UserDetail;
+use App\EmployeeInfo;
 
 class User extends Controller
 {
@@ -112,6 +113,7 @@ class User extends Controller
         $email = $request->email;
         $password = $request->password;
 
+        //$data = EmployeeInfo::where('email',$email)->first();
         $data = ModelUser::where('email',$email)->first();
 
         if($data){ //apakah email tersebut ada atau tidak
@@ -125,16 +127,21 @@ class User extends Controller
 //            $modulCategory = new ModulCategoryController();
 
             if(Hash::check($password,$data->password)){
-                Session::put('id',$data->id);
+                
+                $employee = EmployeeInfo::where('email',$email)->first();
+                
+                Session::put('id',$employee->id);
                 Session::put('name',$data->name);
                 Session::put('email',$data->email);
                 Session::put('picture',$data->img_profile);
+                //Session::put('picture','avatar5.png');
                 Session::put('loginSts',TRUE);
                                      
-                $_SESSION['id'] = $data->id;
+                $_SESSION['id'] = $employee->id;
                 $_SESSION['name'] = $data->name;
                 $_SESSION['email'] = $data->email;
                 $_SESSION['picture'] = $data->img_profile;
+                //$_SESSION['picture'] = 'avatar5.png';
                 $_SESSION['login_status'] = true;
 //                $i=1;
 //                $roleGrpUser="";

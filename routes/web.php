@@ -75,7 +75,16 @@ Route::get('/master/set_document','SettingDocumentInfoController@index');
 Route::get('/master/set_document/add_data','SettingDocumentInfoController@addData');
 Route::get('/master/set_document/edit_data/{id}','SettingDocumentInfoController@editData');
 
-Route::get('/transaksi/jobs/job','JobsController@index');
 Route::get('/transaksi/jobs/job/{param1}/{param2}/{param3}','JobsController@index');
 Route::get('/transaksi/jobs/add_data','JobsController@addData');
 Route::get('/transaksi/jobs/edit_data/{id}/{sts}','JobsController@editData');
+
+Route::get('/transaksi/jobs/approval/list/{param1}/{param2}/{param3}','ApprovalJobsController@index');
+Route::get('/transaksi/jobs/approval/edit_data/{id}/{userid}/{sts}','ApprovalJobsController@editData');
+
+Route::get('/transaksi/tickets/ticket/{param1}/{param2}/{param3}','TicketController@index');
+Route::get('/transaksi/tickets/ticket/add_data','TicketController@addData');
+Route::get('/transaksi/tickets/ticket/edit_data/{id}/{deptid}/{jobdeptid}/{sts}','TicketController@editData');
+
+Route::get('/transaksi/tickets/approval/list/{param1}/{param2}/{param3}','ApprovalTicketsController@index');
+Route::get('/transaksi/tickets/approval/edit_data/{id}/{userid}/{sts}','ApprovalTicketsController@editData');

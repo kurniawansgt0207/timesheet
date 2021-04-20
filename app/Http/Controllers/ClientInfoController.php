@@ -27,7 +27,7 @@ class ClientInfoController extends Controller
     }
     
     public function showData($id){
-        $listData = DB::select('CALL `sp_m_csp_m_client_getlient_listmenu`(?)',array($id));
+        $listData = DB::select('CALL `sp_m_client_get`(?)',array($id));
         return $listData;
     }
     
