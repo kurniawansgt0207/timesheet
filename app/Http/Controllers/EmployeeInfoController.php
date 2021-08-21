@@ -13,12 +13,13 @@ use App\Http\Controllers\DepartemenInfoController;
 use App\Http\Controllers\JabatanInfoController;
 use App\Http\Controllers\LevelInfoController;
 use App\Http\Controllers\RoleInfoController;
+use App\Http\Controllers\EmployeeRoleInfoController;
 
 class EmployeeInfoController extends Controller
 {
     //
     public function index() {
-        $listData = $this->showDataAllJoin();
+        $listData = $this->showDataAllJoin();                        
         return view('/layouts/master/employee_info_list', ['employee_info' => $listData]);
     }
     
@@ -42,18 +43,18 @@ class EmployeeInfoController extends Controller
         $jabatan = new JabatanInfoController();
         $level = new LevelInfoController();
         $role = new RoleInfoController();
+        $employeeRole = new EmployeeRoleInfoController();
         
-        $group = array(0);        
+        $employee = array(0);        
         $departemen_list = $departemen->showDataAll();
         $jabatan_list = $jabatan->showDataAll();
         $level_list = $level->showDataAll();
         $role_list = $role->showDataAll();
+        $employee_role_list = $employeeRole->showDataByUser(0);
         
-        Session::put('jabatan_list',$jabatan_list);
-        Session::put('level_list',$level_list);
-        Session::put('role_list',$role_list);
-        
-        return view('/layouts/master/employee_info',['employee_info' => $group, 'departemen_list' => $departemen_list]);
+        return view('/layouts/master/employee_info',['employee_info' => $employee, 
+            'departemen_list' => $departemen_list, 'employee_role_list' => $employee_role_list, 
+            'jabatan_list' => $jabatan_list, 'level_list' => $level_list, 'role_list' => $role_list]);
     }
     
     public function editData($id){
@@ -61,18 +62,18 @@ class EmployeeInfoController extends Controller
         $jabatan = new JabatanInfoController();
         $level = new LevelInfoController();
         $role = new RoleInfoController();
-        
-        $group = $this->showData($id);
+        $employeeRole = new EmployeeRoleInfoController();
+                
+        $employee = $this->showData($id);
         $departemen_list = $departemen->showDataAll();
         $jabatan_list = $jabatan->showDataAll();
         $level_list = $level->showDataAll();
         $role_list = $role->showDataAll();
+        $employee_role_list = $employeeRole->showDataByUser($id);
         
-        Session::put('jabatan_list',$jabatan_list);
-        Session::put('level_list',$level_list);
-        Session::put('role_list',$role_list);
-        
-        return view('/layouts/master/employee_info',['employee_info' => $group, 'departemen_list' => $departemen_list]);
+        return view('/layouts/master/employee_info',['employee_info' => $employee, 
+            'departemen_list' => $departemen_list, 'employee_role_list' => $employee_role_list, 
+            'jabatan_list' => $jabatan_list, 'level_list' => $level_list, 'role_list' => $role_list]);
     }
     
     public function storeData(Request $request)
@@ -100,12 +101,29 @@ class EmployeeInfoController extends Controller
         $m_employee->departemenID = $request->departemen;
         $m_employee->jabatanID = $request->jabatan;
         $m_employee->levelId = $request->level;
-        $m_employee->roleId = $request->role;
         $m_employee->isActive = $request->active;
         $m_employee->audituserid = $_SESSION['id'];
         $m_employee->save();
 
         $id = DB::getPdo()->lastInsertId();
+        
+        $jmlListRole = count($request->roleid);
+        $roleId = $request->roleid;
+        $roleCheck = $request->roleemployeeactive;
+        
+        $employee_role = new EmployeeRoleInfoController();        
+                
+        for($a=0;$a<$jmlListRole;$a++){
+            $idRole = $roleId[$a];
+            $roleActive = 0;
+            for($b=0;$b<count($roleCheck);$b++){                
+                if($idRole == $roleCheck[$b]) {
+                    $roleActive = "1";
+                    break;                 
+                }
+            }                        
+            $employee_role->save_data($id, $idRole, $roleActive);
+        }
                 
         echo "Data Berhasil Tersimpan";
     }
@@ -125,6 +143,25 @@ class EmployeeInfoController extends Controller
         $m_employee->audituserid = $_SESSION['id'];
         $m_employee->save();       
 
+        $jmlListRole = count($request->roleid);
+        $roleId = $request->roleid;
+        $roleCheck = $request->roleemployeeactive;                
+        
+        $employee_role = new EmployeeRoleInfoController();
+        $employee_role->deleteDataByUser($id);
+                
+        for($a=0;$a<$jmlListRole;$a++){
+            $idRole = $roleId[$a];
+            $roleActive = 0;
+            for($b=0;$b<count($roleCheck);$b++){                
+                if($idRole == $roleCheck[$b]) {
+                    $roleActive = "1";
+                    break;                 
+                }
+            }                        
+            $employee_role->save_data($id, $idRole, $roleActive);
+        }
+        
         echo "Data Berhasil Terupdate";
     }
     

@@ -7,34 +7,32 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 
-use App\LevelInfo;
-
-class LevelInfoController extends Controller
+class ActivityTypeInfoController extends Controller
 {
     //
     public function index() {
         $listData = $this->showDataAll();
-        return view('/layouts/master/level_info_list', ['level_info' => $listData]);
+        return view('/layouts/master/activity_type_info_list', ['activity_type_info' => $listData]);
     }
     
     public function showDataAll() {
-        $listData = DB::select("SELECT * FROM m_level ORDER BY id");
+        $listData = DB::select("SELECT * FROM m_activity_type ORDER BY id");
         return $listData;
     }
     
     public function showData($id){
-        $listData = DB::select("SELECT * FROM m_level WHERE id=".$id);
+        $listData = DB::select("SELECT * FROM m_activity_type WHERE id=".$id);
         return $listData;
     }
     
     public function addData(){        
-        $group = array(0);        
-        return view('/layouts/master/level_info',['level_info' => $group]);
+        $area = array(0);        
+        return view('/layouts/master/activity_type_info',['activity_type_info' => $area]);
     }
     
     public function editData($id){
-        $group = $this->showData($id);
-        return view('/layouts/master/level_info',['level_info' => $group]);
+        $area = $this->showData($id);
+        return view('/layouts/master/activity_type_info',['activity_type_info' => $area]);
     }
     
     public function storeData(Request $request)
@@ -54,11 +52,10 @@ class LevelInfoController extends Controller
 
     public function save_data(Request $request)
     {
-        $m_level = new LevelInfo();
-        $m_level->levelname = $request->levelname;
-        $m_level->levelno = $request->levelno;
-        $m_level->audituser = $_SESSION['nama'];
-        $m_level->save();
+        $m_pekerja = new AreaInfo();
+        $m_pekerja->area = $request->area;
+        $m_pekerja->audituser = $_SESSION['nama'];
+        $m_pekerja->save();
 
         $id = DB::getPdo()->lastInsertId();
                 
@@ -67,18 +64,17 @@ class LevelInfoController extends Controller
     
     public function update_data(Request $request, $id)
     {
-        $m_level = LevelInfo::where('id', $id)->first();
-        $m_level->levelname = $request->levelname;
-        $m_level->levelno = $request->levelno;
-        $m_level->audituser = $_SESSION['nama'];
-        $m_level->save();       
+        $m_pekerja = AreaInfo::where('id', $id)->first();
+        $m_pekerja->area = $request->area;
+        $m_pekerja->audituser = $_SESSION['nama'];
+        $m_pekerja->save();       
 
         echo "Data Berhasil Terupdate";
     }
     
     public function delete_data($id)
     {
-        DB::table('m_level')->where('id',$id)->delete();
-        return redirect('/master/jabatan');
+        DB::table('m_area')->where('id',$id)->delete();
+        return redirect('/master/area');
     }
 }

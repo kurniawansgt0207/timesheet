@@ -76,7 +76,7 @@ class SettingDocumentInfoController extends Controller
         $m_sett_document->textprefix_last = $request->textprefix_last;
         $m_sett_document->yop_last = $request->yop_last;
         $m_sett_document->mop_last = $request->mop_last;
-        $m_sett_document->audituser = $_SESSION['name'];
+        $m_sett_document->audituser = $_SESSION['nama'];
         $m_sett_document->save();
 
         $id = DB::getPdo()->lastInsertId();
@@ -100,7 +100,7 @@ class SettingDocumentInfoController extends Controller
         $m_sett_document->textprefix_last = $request->textprefix_last;
         $m_sett_document->yop_last = $request->yop_last;
         $m_sett_document->mop_last = $request->mop_last;
-        $m_sett_document->audituser = $_SESSION['name'];
+        $m_sett_document->audituser = $_SESSION['nama'];
         $m_sett_document->save();       
 
         echo "Data Berhasil Terupdate";

@@ -57,7 +57,7 @@ class CostInfoController extends Controller
         $m_cost = new CostInfo();
         $m_cost->costname = $request->costname;
         $m_cost->visOrder = $request->visorder;
-        $m_cost->audituser = $_SESSION['name'];
+        $m_cost->audituser = $_SESSION['nama'];
         $m_cost->save();
 
         $id = DB::getPdo()->lastInsertId();
@@ -70,7 +70,7 @@ class CostInfoController extends Controller
         $m_cost = CostInfo::where('id', $id)->first();
         $m_cost->costname = $request->costname;
         $m_cost->visOrder = $request->visorder;
-        $m_cost->audituser = $_SESSION['name'];
+        $m_cost->audituser = $_SESSION['nama'];
         $m_cost->save();       
 
         echo "Data Berhasil Terupdate";

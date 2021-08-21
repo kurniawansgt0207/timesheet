@@ -74,7 +74,7 @@ class JabatanInfoController extends Controller
         $m_jabatan = new JabatanInfo();
         $m_jabatan->jabatan = $request->groupcode;
         $m_jabatan->levelId = $request->groupname;
-        $m_jabatan->audituser = $_SESSION['name'];
+        $m_jabatan->audituser = $_SESSION['nama'];
         $m_jabatan->save();
 
         $id = DB::getPdo()->lastInsertId();
@@ -87,7 +87,7 @@ class JabatanInfoController extends Controller
         $m_jabatan = JabatanInfo::where('id', $id)->first();
         $m_jabatan->jabatan = $request->groupcode;
         $m_jabatan->levelId = $request->groupname;
-        $m_jabatan->audituser = $_SESSION['name'];
+        $m_jabatan->audituser = $_SESSION['nama'];
         $m_jabatan->save();       
 
         echo "Data Berhasil Terupdate";

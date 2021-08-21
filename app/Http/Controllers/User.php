@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Session;
 use App\ModelUser;
 use App\UserDetail;
 use App\EmployeeInfo;
+use App\ModulGroupInfo;
+use App\ModulInfo;
+use App\EmployeeRoleInfo;
+use App\RoleDetailInfo;
 
 class User extends Controller
 {
@@ -105,60 +109,46 @@ class User extends Controller
     public function changePassword(){
         $passwordOri = "123456";
         $password = Hash::make($passwordOri);
-        $update = DB::update("update m_user set password='".$password."',password_ori='".$passwordOri."',updated_at=NOW()");
+        //$update = DB::update("update m_user set password='".$password."',password_ori='".$passwordOri."',updated_at=NOW()");
+        $update = DB::update("update m_employee set password='".$password."',password_show='$passwordOri',updated_at=NOW()");
     }
 
     public function loginPost(Request $request){
-
         $email = $request->email;
         $password = $request->password;
 
-        //$data = EmployeeInfo::where('email',$email)->first();
-        $data = ModelUser::where('email',$email)->first();
+        $data = EmployeeInfo::where('email',$email)->first();
 
-        if($data){ //apakah email tersebut ada atau tidak
-//            $userDtl = UserDetail::where('user_id',$data->id)->get();
-//
-//            $userLayanan = DB::select("SELECT * FROM m_data_pekerja_support_group a
-//			WHERE a.user_id=".$data->id);
-//
-//            $roleDtl = new RoleGroupDetailController();
-//            $modul = new MasterModulController();
-//            $modulCategory = new ModulCategoryController();
+        if($data){
+            
+            $employeeRole = new EmployeeRoleInfoController();
+            $employeeRole_ = $employeeRole->showDataByUserRole($data->id);
+            
+            $modulGroup = new ModulGroupInfoController();
+            $modulGroup_ = $modulGroup->showModulGroupByRole($employeeRole_[0]->roleUser);
+            
+            $roleMenu = new RoleDetailInfoController();
+            $roleMenu_ = $roleMenu->showDataByRoleUser($employeeRole_[0]->roleUser);
+            
+            $modul = new ModulInfoController();            
 
-            if(Hash::check($password,$data->password)){
-                
-                $employee = EmployeeInfo::where('email',$email)->first();
-                
-                Session::put('id',$employee->id);
-                Session::put('name',$data->name);
+            if(Hash::check($password,$data->password)){                
+                Session::put('id',$data->id);
+                Session::put('name',$data->nama);
                 Session::put('email',$data->email);
-                Session::put('picture',$data->img_profile);
-                //Session::put('picture','avatar5.png');
+                Session::put('picture','profile-icon.png');
                 Session::put('loginSts',TRUE);
+                Session::put('menu_group',$modulGroup_);
+                Session::put('role_menu_user',$roleMenu_);
                                      
-                $_SESSION['id'] = $employee->id;
-                $_SESSION['name'] = $data->name;
+                $_SESSION['id'] = $data->id;
+                $_SESSION['nama'] = $data->nama;
                 $_SESSION['email'] = $data->email;
-                $_SESSION['picture'] = $data->img_profile;
-                //$_SESSION['picture'] = 'avatar5.png';
+                $_SESSION['picture'] = 'profile-icon.png';
                 $_SESSION['login_status'] = true;
-//                $i=1;
-//                $roleGrpUser="";
-//                foreach($userDtl as $usr)
-//                {
-//                    $roleGrpUser .= (count($userDtl)==$i)?"'".$usr->role_group."'":"'".$usr->role_group."',";
-//                    $i++;
-//                }
-//                $roleDtl_ = $roleDtl->get_submenu_by_role($roleGrpUser);
-//                $modulCat_ = $modulCategory->get_parent_menu($data->id);
-//                $modulCat_ = count($modulCat_)>0 ? $modulCat_ : 0;
-//
-//                Session::put('role_name',$roleGrpUser);
-//                Session::put('role_submenu',$roleDtl_);
-//                Session::put('parent_menu',$modulCat_);
-//                Session::put('user_layanan',$userLayanan);
-
+                $_SESSION['menu_group'] = $modulGroup_;
+                $_SESSION['role_menu_user'] = $roleMenu_;
+                
                 return redirect('/home');
             }
             else{

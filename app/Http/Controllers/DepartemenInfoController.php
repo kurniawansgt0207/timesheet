@@ -68,7 +68,7 @@ class DepartemenInfoController extends Controller
     {
         $m_departemen = new DepartemenInfo();
         $m_departemen->departemen = $request->departemen;
-        $m_departemen->audituser = $_SESSION['name'];
+        $m_departemen->audituser = $_SESSION['nama'];
         $m_departemen->save();
 
         $id = DB::getPdo()->lastInsertId();
@@ -80,7 +80,7 @@ class DepartemenInfoController extends Controller
     {
         $m_departemen = DepartemenInfo::where('id', $id)->first();
         $m_departemen->departemen = $request->departemen;
-        $m_departemen->audituser = $_SESSION['name'];
+        $m_departemen->audituser = $_SESSION['nama'];
         $m_departemen->save();       
 
         echo "Data Berhasil Terupdate";

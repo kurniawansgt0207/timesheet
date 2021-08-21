@@ -56,7 +56,7 @@ class AreaInfoController extends Controller
     {
         $m_pekerja = new AreaInfo();
         $m_pekerja->area = $request->area;
-        $m_pekerja->audituser = $_SESSION['name'];
+        $m_pekerja->audituser = $_SESSION['nama'];
         $m_pekerja->save();
 
         $id = DB::getPdo()->lastInsertId();
@@ -68,7 +68,7 @@ class AreaInfoController extends Controller
     {
         $m_pekerja = AreaInfo::where('id', $id)->first();
         $m_pekerja->area = $request->area;
-        $m_pekerja->audituser = $_SESSION['name'];
+        $m_pekerja->audituser = $_SESSION['nama'];
         $m_pekerja->save();       
 
         echo "Data Berhasil Terupdate";

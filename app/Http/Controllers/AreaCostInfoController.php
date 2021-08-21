@@ -89,7 +89,7 @@ class AreaCostInfoController extends Controller
         $m_area_cost->costId = $request->cost;
         $m_area_cost->costAmt = $request->costamt;
         $m_area_cost->isActive = $request->active;
-        $m_area_cost->audituser = $_SESSION['name'];
+        $m_area_cost->audituser = $_SESSION['nama'];
         $m_area_cost->save();
 
         $id = DB::getPdo()->lastInsertId();
@@ -104,7 +104,7 @@ class AreaCostInfoController extends Controller
         $m_area_cost->costId = $request->cost;
         $m_area_cost->costAmt = $request->costamt;
         $m_area_cost->isActive = $request->active;
-        $m_area_cost->audituser = $_SESSION['name'];
+        $m_area_cost->audituser = $_SESSION['nama'];
         $m_area_cost->save();       
 
         echo "Data Berhasil Terupdate";

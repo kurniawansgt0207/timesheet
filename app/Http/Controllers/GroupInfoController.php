@@ -58,7 +58,7 @@ class GroupInfoController extends Controller
         $m_pekerja->groupcode = $request->groupcode;
         $m_pekerja->groupname = $request->groupname;
         $m_pekerja->jmlkota = $request->jmlkota;
-        $m_pekerja->audituser = $_SESSION['name'];
+        $m_pekerja->audituser = $_SESSION['nama'];
         $m_pekerja->save();
 
         $id = DB::getPdo()->lastInsertId();
@@ -72,7 +72,7 @@ class GroupInfoController extends Controller
         $m_pekerja->groupcode = $request->groupcode;
         $m_pekerja->groupname = $request->groupname;
         $m_pekerja->jmlkota = $request->jmlkota;
-        $m_pekerja->audituser = $_SESSION['name'];
+        $m_pekerja->audituser = $_SESSION['nama'];
         $m_pekerja->save();       
 
         echo "Data Berhasil Terupdate";
