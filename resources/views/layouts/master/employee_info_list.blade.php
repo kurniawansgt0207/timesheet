@@ -36,6 +36,18 @@
                         </thead>
                         <tbody>
                         @foreach($employee_info as $employee=>$p)
+                            <?php
+                                $roleEmployee = new \App\Http\Controllers\EmployeeRoleInfoController();
+                                $roleInfo = new \App\Http\Controllers\RoleInfoController();
+                                $getRoleEmp = $roleEmployee->showDataByUserRole($p->id);                                
+                                $getRole = $roleInfo->showData($getRoleEmp[0]->roleUser);
+                                $roleName = "";
+                                $i = 0;
+                                foreach($getRole as $role){
+                                    $roleName .= ($i < count($getRole)-1) ? ucwords(strtolower($role->role)).", " : $role->role;
+                                    $i++;
+                                }
+                            ?>
                             <tr>
                                 <td>{{$employee+1}}</td>
                                 <td>{{$p->nik}}</td>
@@ -44,7 +56,7 @@
                                 <td>{{$p->departemen}}</td>
                                 <td>{{$p->jabatan}}</td>
                                 <td>{{$p->levelname}}</td>
-                                <td>{{$p->role}}</td>
+                                <td>{{$roleName}}</td>
                                 <td>{{ ($p->isActive==1) ? "Aktif" : "Tidak Aktif" }}</td>
                                 <td align="center">
                                 <a href="{{url('/')}}/master/employee/edit_data/{{ $p->id }}">

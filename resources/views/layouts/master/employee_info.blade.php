@@ -105,7 +105,7 @@
                                     <option>[Pilih Jabatan]</option>                                    
                                     <?php
                                         $selected = "";
-                                        $jabatan_list = Session::get('jabatan_list');
+                                        //$jabatan_list = Session::get('jabatan_list');
                                         foreach($jabatan_list as $jabatan){
                                             if(isset($employee->id)){
                                                 $selected = ($jabatan->id == $employee->jabatanID) ? "selected" : "";                                            
@@ -123,7 +123,7 @@
                                     <option>[Pilih Level]</option>        
                                     <?php
                                         $selected = "";
-                                        $level_list = Session::get('level_list');
+                                        //$level_list = Session::get('level_list');
                                         foreach($level_list as $level){
                                             if(isset($employee->id)){
                                                 $selected = ($level->id == $employee->levelId) ? "selected" : "";                                            
@@ -135,26 +135,46 @@
                                     ?>
                                 </select>
                             </div>
-                            <div class="form-group">
-                                <label>Role</label>
-                                <select class="form-control select2" style="width: 100%;" name="role" id="role" required>
-                                    <option>[Pilih Role]</option>
-                                    <?php
-                                        $selected = "";
-                                        $role_list = Session::get('role_list');
-                                        foreach($role_list as $role){
-                                            if(isset($employee->id)){
-                                                $selected = ($role->id == $employee->roleId) ? "selected" : "";                                            
-                                            }
-                                    ?>
-                                    <option value="{{ $role->id }}" {{ $selected }}>- {{ $role->role }} -</option>
-                                    <?php
-                                        }
-                                    ?>
-                                </select>
+                            <div class="row">
+                                <div class="col-md-12">                            
+                                    <label>Role</label>                            
+                                    <table id="example" class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">No</th>
+                                                <th style="text-align: center">Role</th>
+                                                <th style="text-align: center">Aktif</th>
+                                            </tr>
+                                        </thead> 
+                                        <tbody>                                    
+                                            <?php
+                                                $no = 1;                                        
+                                                foreach($role_list as $role){
+                                                    $checked = "";
+                                                    foreach($employee_role_list as $employeerole){
+                                                        if($role->id == $employeerole->roleId){
+                                                            $checked = "checked";
+                                                            break;
+                                                        }
+                                                    }
+                                            ?>
+                                            <tr>
+                                                <td align="center">{{$no}}<input type="hidden" name="roleid[]" id="roleid" value="{{ $role->id }}"></td>
+                                                <td align="center">{{ strtoupper($role->role) }}</td>
+                                                <td align="center">
+                                                    <input type="checkbox" name="roleemployeeactive[]" id="roleemployeeactive" value="{{$role->id}}" {{ $checked }}>
+                                                </td>                                        
+                                            </tr>
+                                            <?php
+                                                    $no++;
+                                                }
+                                            ?>                                        
+                                        </tbody>
+                                    </table>                                    
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label>Status Aktif</label>
+                                <label>Status Aktif</label>&nbsp;
                                 <input type="radio" class="minimal" id="active" name="active" value="1" <?php echo (isset($employee->id) && $employee->isActive=="1") ? "checked" : "";?> required>&nbsp;Ya&nbsp;
                                 <input type="radio" class="minimal" id="active" name="active" value="0" <?php echo (isset($employee->id) && $employee->isActive=="0") ? "checked" : "";?> required>&nbsp;Tidak&nbsp;
                             </div>      
@@ -167,7 +187,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
     </div>
     </form>
 </section>

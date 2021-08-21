@@ -31,7 +31,7 @@
                         @foreach($role_info as $role=>$p)
                             <tr>
                                 <td>{{$role+1}}</td>
-                                <td>{{$p->role}}</td>
+                                <td>{{ strtoupper($p->role) }}</td>
                                 <td align="center">
                                 <a href="{{url('/')}}/master/role/edit_data/{{ $p->id }}">
                                 <img src="{{url('public/adminlte/dist/img/icon-edit.png')}}" width="18" height="18" title="Rubah Data">

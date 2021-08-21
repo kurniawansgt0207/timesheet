@@ -37,6 +37,12 @@
   <link rel="stylesheet" href="{{url('public/adminlte/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css')}}">
   <!-- DataTables -->
   <link rel="stylesheet" href="{{url('public/adminlte/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="{{url('public/adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css')}}">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="{{url('public/adminlte/plugins/toastr/toastr.min.css')}}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{url('public/adminlte/dist/css/adminlte.min.css')}}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -123,6 +129,14 @@
 <!-- CK Editor -->
 <script src="{{url('public/adminlte/bower_components/ckeditor/ckeditor.js')}}"></script>
 <!-- Page script -->
+<!-- jQuery -->
+<script src="{{url('public/adminlte/plugins/jquery/jquery.min.js')}}"></script>
+<!-- Bootstrap 4 -->
+<script src="{{url('public/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<!-- SweetAlert2 -->
+<script src="{{url('public/adminlte/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<!-- Toastr -->
+<script src="{{url('public/adminlte/plugins/toastr/toastr.min.js')}}"></script>
 <script>
   $(function () {
     //Initialize Select2 Elements

@@ -58,8 +58,51 @@
                             <input type="hidden" name="sessionVal" value="{{ $_SESSION['login_status'] }}">
                             <div class="form-group">
                                 <label>Role Name</label>
-                                <input type="text" class="form-control" id="role" name="role" placeholder="Role" required value="{{isset($role->id)?$role->role:''}}">
-                            </div>      
+                                <input type="text" class="form-control" id="role" name="role" placeholder="Role Name" required value="{{isset($role->id) ? strtoupper($role->role) :''}}">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">                            
+                                    <label>Role</label>                            
+                                    <table id="example" class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th style="text-align: center">No</th>
+                                                <th style="text-align: center">Modul Group</th>
+                                                <th style="text-align: center">Modul Vidorder</th>
+                                                <th style="text-align: center">Modul Name</th>
+                                                <th style="text-align: center">Aktif</th>
+                                            </tr>
+                                        </thead> 
+                                        <tbody>                                    
+                                            <?php
+                                                $no = 1;  
+                                                
+                                                foreach($modul_info as $modul){
+                                                    $checked = "";
+                                                    foreach($role_detail as $roledtl){
+                                                        if($modul->id == $roledtl->modul_id){
+                                                            $checked = "checked";
+                                                            break;
+                                                        }
+                                                    }
+                                            ?>
+                                            <tr>
+                                                <td align="center">{{$no}}<input type="hidden" name="modulid[]" id="modulid" value="{{ $modul->id }}"></td>
+                                                <td align="center">{{ strtoupper($modul->modul_group) }}</td>
+                                                <td align="center">{{ strtoupper($modul->modul_visorder) }}</td>
+                                                <td align="center">{{ strtoupper($modul->modul_label) }}</td>
+                                                <td align="center">
+                                                    <input type="checkbox" name="modulactive[]" id="modulactive" value="{{$modul->id}}" {{ $checked }}>
+                                                </td>                                        
+                                            </tr>
+                                            <?php
+                                                    $no++;
+                                                }
+                                            ?>                                        
+                                        </tbody>
+                                    </table>                                    
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>&nbsp;                                
                                 <button type="button" class="btn btn-primary" onclick="window.location.href='{{url("/master/role")}}'">Back</button>                                

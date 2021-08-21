@@ -27,7 +27,7 @@
           @else
           <img src="{{url('/public/adminlte/dist/img/profile-icon.png')}}" class="user-image" alt="User Image">
           @endif
-          <span class="hidden-xs" style="color: #000000"><?php echo isset($_SESSION['name'])?$_SESSION['name']:"";?></span>
+          <span class="hidden-xs" style="color: #000000"><?php echo isset($_SESSION['nama'])?$_SESSION['nama']:"";?></span>
         </a>
         <ul class="dropdown-menu">
           <!-- User image -->
@@ -44,7 +44,7 @@
                 $userRole = str_replace("_"," ",str_replace(","," & ",str_replace("'","",$userRole)));
             ?>
             <p style="color: #000000">
-              {{isset($_SESSION['name'])?$_SESSION['name']:""}}<br>{{$userRole}} {{ $_SESSION['id'] }}
+              {{isset($_SESSION['nama'])?$_SESSION['nama']:""}}<br>{{$userRole}} {{ $_SESSION['id'] }}
             </p>
           </li>
 
