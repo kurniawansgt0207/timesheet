@@ -79,3 +79,5 @@ Route::get('/transaksi/tickets/ticket/delete/{id}/{user}','TicketController@dele
 
 Route::post('/transaksi/tickets/approval/store','ApprovalTicketsController@storeData');
 Route::get('/transaksi/tickets/approval/delete/{id}/{user}','ApprovalTicketsController@delete_data');
+
+Route::post('/transaksi/timesheets/store','TimesheetController@storeData');

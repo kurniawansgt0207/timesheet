@@ -88,3 +88,6 @@ Route::get('/transaksi/tickets/ticket/edit_data/{id}/{deptid}/{jobdeptid}/{sts}'
 
 Route::get('/transaksi/tickets/approval/list/{param1}/{param2}/{param3}','ApprovalTicketsController@index');
 Route::get('/transaksi/tickets/approval/edit_data/{id}/{userid}/{sts}','ApprovalTicketsController@editData');
+
+Route::get('/transaksi/timesheets/timesheet/{param1}/{param2}/{param3}','TimesheetController@index');
+Route::get('/transaksi/timesheets/add_data/{ticketid}/{tglcol}','TimesheetController@addData');
